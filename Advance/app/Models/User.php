@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'uid',
         'name',
         'email',
         'password',
@@ -41,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nices(){
+        return $this->hasMany('App\Models\Nice');
+    }
+
+    public function reservations(){
+        return $this->hasMany('App\Models\Reservation');
+    }
 }

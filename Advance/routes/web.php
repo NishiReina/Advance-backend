@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\NiceController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::post('/', [UserController::class, 'store']);
+
+Route::post('/api/nice/delete', [NiceController::class, 'destroy']);
+Route::get('api/nice/getStatus/{shop_id}', [NiceController::class, 'getStatus']);
+
+Route::get('/mypage/like/{id?}', [ShopController::class, 'likeShop']);
